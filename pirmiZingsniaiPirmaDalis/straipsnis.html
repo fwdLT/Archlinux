@@ -1,0 +1,168 @@
+<a 
+href="http://www.fwd.lt/wp-content/uploads/2011/07/archlinux-logo-dark-1200dpi.png"><img 
+class="alignnone size-large wp-image-1095" title="archlinux-logo" 
+src="http://www.fwd.lt/wp-content/uploads/2011/07/archlinux-logo-dark-1200dpi-1024x340.png" 
+alt="" width="574" height="190" /></a>
+
+Praeitame <a 
+href="http://www.fwd.lt/2011/apzvalgos/archlinux-ivadas/">straipsnyje</a> 
+apžvelgiau <a href="http://www.archlinux.org/">archlinux</a>, taip pat 
+nurodžiau pagrindinius informacijos šaltinius, tarp jų ir <a 
+href="https://wiki.archlinux.org/index.php/Beginners%27_Guide_(Lietuvi%C5%A1kai)">išsamią 
+diegimo ir konfigūravimo instrukciją</a>, ši mano pamoka šiek tiek 
+skirsis - bet pagrinde tik eiliškumu, todėl jei kas nepavyksta - pirma 
+pažiūrėkite ten, gal būt iškart rasite sau tinkantį sprendimą.
+
+Aš pradinį konfiguravimą skirstau į tris dalis: pirma - įdiegiami būtini 
+paketai visai įrangai veikti,  minimali grafinė aplinka, kad būtų 
+įmanoma naudotis naršykle (skaityti wiki ir šiaip <a 
+href="http://fwd.lt">FWD.lt</a>...) ir baigti nustatymus, antra jūsų 
+norimos grafinės aplinkos diegimas konfigūravimas ir trečia - įvairios 
+smulkmenos. Šį kartą - Pirma dalis:
+
+Visų pirma, prisijungsime root naudotoju ir diegime nustatytu 
+slaptažodžiu, pamatysime smagiausią dalyką -  terminalą. Pradėsime nuo 
+<strong>interneto</strong>: <em>ifconfig ir </em> pamatysim kas pas mus 
+veikia, jei neveikia eth0  - pažadiname komanda <em>ifconfig eth0 
+up</em>, tada automatiškai 'paimsime' visus interneto nustatymus 
+<em>dhcpcd eth0</em>, galime patikrinti <em>ping -c 3 fwd.lt</em>, jei 
+viskas gerai, konfigūruojame toliau, jei ne - greičiausiai naudojate ką 
+nors kas jau yra aprašyta <a 
+href="https://wiki.archlinux.org/index.php/Beginners%27_Guide_(Lietuvi%C5%A1kai)#Tinklo_konfig.C5.ABravimas">čia</a>, 
+tęsiame konfigūravimą: <strong>pacman</strong>, jei paketus diegėte 
+tiesiai iš disko ir nenaudojote pacman diegimo metu, jį reiks 'paleisti' 
+dabar savo mėgstamu teksto editoriumi (Aš rekomenduoju nano (jei norite 
+ko nors paprasto) arba vi (jei norite ko nors galingo)) redaguokite 
+failą <em>/etc/pacman.d/mirrorlist</em>, ir nutrinkite komentaro ženklą 
+nuo vieno ar kelių serverių, kurie arčiausiai jūsų (Lietuviškas 
+aitvaras.lt - neveikia.), pasirinkite Latvijos, ar/ir Lenkijos serverius 
+ir išsaugokite pakeitimus. (ctrl+x nano ir grečiausiai puikiai žinote 
+kaip, jei pasirinkote vi). Atnaujiname pacman paketų sąrašus komanda 
+<em>pacman -Sy</em>, jei tuo pačiu norite ir atnaujinti sistemą, 
+naudokite komandą <em>pacman -Syu</em>. Sekite pacman informaciją - jis 
+praneš, jei reikės atlikti kokį nors veiksmą. Nuo šio veiksmo - 
+<strong>pacman'as patapo jūsų geriausiu draugu</strong>, trumpa 
+informacija, kaip su juo nesipykti:
+<ul>
+	<li>įdiegti paketą - <em>pacman -S paketo_pavadinimas</em> (pvz. 
+<em>pacman -S firefox</em>)</li>
+	<li>ieškoti paketo - <em>pacman -Ss 
+aprašymas_arba_dalis_pavadinimo</em> (pvz. <em>pacman -Ss internet 
+browser</em>)</li>
+	<li>ištrinti paketą - <em>pacman -R paketo_pavadinimas</em> 
+(pvz. <em>pacman -R firefox</em>)</li>
+	<li>ištrinti paketą kartu su priklausomybėmis - <em>pacman -Rs 
+paketo_pavadinimas</em> (pvz pacman -Rs firefox)</li>
+	<li>pilnas sistemos atnaujinimas - pacman -Syu</li>
+	<li>paketų sąrašų atnaujinimas - pacman -Sy</li>
+	<li>instrukcija (arba <a 
+href="https://wiki.archlinux.org/index.php/Pacman">wiki</a>) - man 
+pacman</li>
+</ul>
+Aš labai stipriai rekomenduoju įsidiegti ir susikonfiguruoti <strong>CPU 
+dažnio valdymo</strong> paketą cpufrequtils (<em>pacman -S 
+cpufrequtils</em>), tada redaguojame /etc/conf.d/cpufreq:
+<pre class="brush:bash">#configuration for cpufreq control
+
+# valid governors:
+#  ondemand, performance, powersave,
+#  conservative, userspace
+governor="ondemand"
+
+# limit frequency range (optional)
+# valid suffixes: Hz, kHz (default), MHz, GHz, THz
+#min_freq="2.25GHz"
+#max_freq="3GHz"
+
+# use freq to set up the exact cpu frequency using it with userspace 
+governor
+#freq=</pre>
+Galimi režimai - <em>ondemand</em> (Automatinis variantas, kiek cpu 
+reikia, taip jį ir "clock'ina"), <em>performance</em> ( visada laikomas 
+maksimalus dažnis, bet kam kepinti procesorių? ), <em>powersave</em> 
+(režimas taupantis energiją ),  <em>conservative</em> ( panašus į 
+<em>ondemand</em>, bet dažniai keičiami šiek tiek lėčiau). Numatytasis 
+yra <em>performance</em> režimas, o rekomenduotinas -<em> ondemand</em>. 
+Išsaugoję failą, paleidžiame: <em>/etc/rc.d/cpufreq start</em> ir nuo 
+šiol jūsų CPU dažnis keisis pagal tai ką darote ir kokį režimą 
+nustatėte.  Pasižiūrėti, koks dažnis dabar galite naudoti 
+komandą <em>cpufreq-info. </em>
+
+<strong>Garso konfigūravimas</strong>: tiesiog įdiegiame alsa-utils 
+alsa-lib alsa-oss paketus naudodami savo geriausią draugą pacman'ą: 
+<em>pacman -S alsa-utils alsa-lib alsa-oss</em>, tada galime patikrinti: 
+<em>speaker-test -c &lt;kanalų skaičius&gt;</em> (pvz <em>speaker-test 
+-c 2</em>), jei viskas veikia  - einame toliau, jei ne - skaitom <a 
+href="https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture">čia</a>.
+
+<strong>Vaizdo konfigūravimas</strong>: jei nežinote kokią vaizdo 
+plokštę turite galite pasinaudoti komanda <em>lspci | grep VGA</em>, 
+ turim du pasirinkimus, naudoti open source ar gamintojų tvarkykles, jei 
+diegiame <strong>atviro kodo</strong>, tiesiog idiegiame paketą 
+<em>xf86-video-ati, </em>jei plokštė 
+radeon), <em>xf86-video-nouveau</em> , jei nvidia 
+ar <em>xf86-video-intel</em>, jei jūs turit intel.
+
+Jei norime <strong>gamintojo tvarkyklių</strong> su 
+<strong>nvidia</strong>, reiks įdiegti paketą <em>nvidia</em> 
+(<em>pacman -S nvidia</em>) ir paleisti komandą <em>nvidia-xconfig</em>, 
+taip bus sukonfiguruotas xorg'as.
+
+Su <strong>ATI</strong>, reiks redaguoti <em>/etc/pacman.conf</em> failą 
+ir į jo apačią pridėti tokias eilutes:
+<pre class="brush:bash">[catalyst]
+  Server = http://catalyst.apocalypsus.net/repo/catalyst/$arch</pre>
+Paleisti komandą <em>pacman -Sy</em> ir komandą <em>pacman 
+-S catalyst</em> (patarimas: parašius <em>pacman -Sy peketo_pavadinimas 
+</em>ir atnaujinamas sąrašas ir įdiegiamas paketas, taigi vietoj dviejų 
+komandų buvo galima rašyti ir <em>pacman -Sy cataclyst</em>), tada 
+konfiguruojame xorg'ą komanda <em>aticonfig --initial</em>.
+
+Xorg'ą sudiegus kartu su tvarkyklėmis, taip pat reiktų įsidiegti paketus 
+<em>xorg-xinit</em> ir <em>xterm</em>, taip pat <em>xorg-twm</em>, 
+komanda <em>pacman -S xorg-xinti xterm xorg-twm</em>. Taip pat prieš 
+paleidžiant xorg'ą reikia idiegti ir paleisti <em>dbus</em>, komanda 
+<em>pacman -S dbus</em>, paleidžiame <em>/etc/rc.d/dbus start</em> taip 
+<em>startx</em> komandos pagalba jau turėtumėte matyti labai paprastą 
+grafinę sąsają.
+
+Dabar redaguojame /etc/rc.conf failą, kuriame visa 
+pagrindinė konfigūracija:
+
+&nbsp;
+<pre class="brush:bash"># šiek tiek nieko įdomaus iškirpta
+LOCALE="en_US.UTF-8"
+HARDWARECLOCK="localtime"
+TIMEZONE="Europe/Vilnius"
+KEYMAP="us"
+CONSOLEFONT=
+CONSOLEMAP=
+USECOLOR="yes"
+# šiek tiek nieko įdomaus iškirpta
+MOD_AUTOLOAD="yes"
+#MOD_BLACKLIST=() #deprecated
+MODULES=(cpufreq_ondemand)
+USELVM="no"
+# šiek tiek nieko įdomaus iškirpta
+HOSTNAME="hostname" 
+# šiek tiek nieko įdomaus iškirpta
+eth0="dhcp"
+INTERFACES=(eth0)
+# šiek tiek nieko įdomaus iškirpta
+DAEMONS=(@syslog-ng @netfs @crond @dbus @alsa @cpufrequtils )</pre>
+Neišsigąskite - viso failo jums parašyti nereikės, tiesiog į DEAMONS 
+eilutę sudėti viską ką jau sukonfigūravome ir prie MODULES pridėti 
+cpufreq_&lt;jūsų pasirinktas režimas&gt;, @ prieš daemon'ą reiškia, kad 
+sistema nelauks, kol vienas daemonas pasileis ir tuo pat metu taip pat 
+paleidinės ir kitą, taip sutaupysite laiko. Jei norime laikinai atjungti 
+vieną ar kitą deamoną galima prieš jį padėti ženklą !, taip sekančio 
+užkrovimo metu, jo nepaleis. Daemonus taip pat galima valdyti komandomis 
+/etc/rc.d/&lt;daemono pavadinimas&gt; start (jei 
+paleidžiame), /etc/rc.d/&lt;daemono pavadinimas&gt; stop (jei stabdome) 
+ir /etc/rc.d/&lt;daemono pavadinimas&gt; restart jei norime perkrauti 
+daemoną.
+
+Tikiuosi, čia rasite naudingos informacijos ir ją pritaikysite. Jau 
+greitai įrašai apie antrą ir trečią konfigūravimo etapą - taip pat, 
+stengiuosi viską rašyti kiek plačiau, bet nenoriu išgąsdinti, todėl jei 
+ko jūsų manymu trūksta - paklauskite komentaruose.

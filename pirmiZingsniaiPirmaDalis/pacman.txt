@@ -1,0 +1,10 @@
+įdiegti paketą – pacman -S paketo_pavadinimas (pvz. pacman -S firefox)
+ieškoti paketo – pacman -Ss aprašymas_arba_dalis_pavadinimo (pvz. pacman 
+-Ss internet browser)
+ištrinti paketą – pacman -R paketo_pavadinimas (pvz. pacman -R firefox)
+ištrinti paketą kartu su priklausomybėmis – pacman -Rs 
+paketo_pavadinimas (pvz pacman -Rs firefox)
+pilnas sistemos atnaujinimas – pacman -Syu
+paketų sąrašų atnaujinimas – pacman -Sy
+instrukcija (arba wiki) – man pacman
+
