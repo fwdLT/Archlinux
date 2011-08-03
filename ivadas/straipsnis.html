@@ -1,0 +1,99 @@
+<a 
+href="http://www.fwd.lt/wp-content/uploads/2011/07/archlinux-logo-dark-1200dpi.png"><img 
+class="alignnone size-large wp-image-1095" title="archlinux-logo" 
+src="http://www.fwd.lt/wp-content/uploads/2011/07/archlinux-logo-dark-1200dpi-1024x340.png" 
+alt="" width="402" height="133" /></a>
+Kiekvienas Linux naudotojas susiduria su dilema - Kokią distribuciją 
+pasirinkti? Aš norėčiau pasiūlyti <a 
+href="http://www.archlinux.org/">Archlinux</a> ir kelių straipsnių ciklu 
+parodyti stipriąsias ir silpnąsias puses. Šiandien norėčiau tiesiog 
+apžvelgti tai, kas skiriasi nuo kitų distribucijų, kokie pagrindiniai 
+pliusai ir minusai, taip pat nurodyti papildomus informacijos šaltinius.
+<h3>Kas yra ArchLinux ir su kuo tai valgoma?</h3>
+<blockquote>Arch Linux yra nepriklausomai kuriama i686/x86-64 
+bendruomeninė distribucija, paremta nuolatinio atnaujinimo (<em>angl. 
+rolling-release</em>) modeliu, turinti dideles binarines saugyklas ir 
+pilnavertį paketų palaikymą; tame tarpe ir tų paketų, kurie pasiekiami 
+per portus. Ši distribucija skirta pažengusiems GNU/Linux naudotojams, o 
+pagrindiniai jos kūrymo principai: minimalizmas, grakštumas, programinio 
+teksto korektiškumas ir modernumas.</blockquote>
+Tokį atsakymą galime rasti ArchLinux <a 
+href="https://wiki.archlinux.org/index.php/Arch_Linux_(Lietuvi%C5%A1kai)">wiki</a> 
+puslapyje, jei sutinkate, kad operacinė sistema turi remtis tokiais 
+principais - žiūrime toliau.
+
+<a 
+href="http://www.fwd.lt/wp-content/uploads/2011/07/DistroWatch.png"><img 
+class="size-full wp-image-1336" title="DistroWatch" 
+src="http://www.fwd.lt/wp-content/uploads/2011/07/DistroWatch.png" 
+alt="" width="250" height="237" /></a>
+
+ArchLinux, priešingai nei kitos populiarios distribucijos (kairėje 
+matote populiariausių distribucijų sąrašą per paskutinių 6 mėnesių 
+laikotarpį) arch nesiūlo pilnai paruošto naudojimui paketo, kas turi 
+tiek gerąją, tiek blogąja pusę: jums suteikta visiška laisvė pasirinkti 
+tai ko jums reikia, bet užgaišite šiek tiek ilgiau, nei įsirašydami <a 
+href="http://www.ubuntu.com/">ubuntu</a>, <a 
+href="http://www.linuxmint.com/">mint</a> ar <a 
+href="http://fedoraproject.org/">Fedorą</a>.
+
+Negalime nepaminėti to, kad Archlinux paketų sistema yra paremta BSD 
+šeimos sistemų naudojama "ports" sistema, kuri rūpinasi, kad 
+kompiliuojant jums kiltų kuo mažiau vargo ir nereiktų ieškoti 
+ir kompiliuoti kiekvieno reikiamo paketo atskirai.
+
+Nors Archlinux ir nėra populiariausia distribucija, bet turi labai 
+kokybišką <a href="https://wiki.archlinux.org">wiki</a>, oficialų <a 
+href="https://bbs.archlinux.org/">forumą</a> ir lietuviškos bendruomenės 
+<a href="http://archlinux.lt/">puslapį</a>, taip pat išsamų <a 
+href="https://wiki.archlinux.org/index.php/Beginners%27_Guide_(Lietuvi%C5%A1kai)">naujokų 
+gidą</a>, turbūt į daugumą iškilusių klausimų - atsakymus bus galima 
+rasti bent viename iš nurodytų šalinių.
+
+Idiegimo diskų atvaizdus galima gauti iš <a 
+href="http://www.archlinux.org/download/">archlinux.org</a> arba jei 
+norite siųstis iš lietuviško tinklo - "<a 
+href="http://82.135.231.154/archlinux/">veidrodis</a>" mano serveryje.
+<h3>i686 ar x86_64?</h3>
+Turbūt šitam klausimui atsakyti galime parašyti ne tik vieną pastraipą 
+per ir kelis straipsnius, bet vienareikšmiško atsakymo nerasime... 
+Teoriškai, 64 bitų sistema turėtų būti greitesnė nei 32, bet taip būna 
+ne visada. 32 bitų sistema palaiko tik iki 4 GB ram, bet sukompiliavus 
+kernelį pagal tam tikras instrukcijas, ir šį limitą galime pakelti iki 
+64 GB. Arba galime tiesiog pasirinkti 64 bitų sistemą progreso vardan. 
+Čia galite rasti išsamesnį <a 
+href="https://wiki.archlinux.org/index.php/Arch64_FAQ">palyginimą</a>.
+<h3>core ar netinstall?</h3>
+Kaip jau turbūt pastebėjote, core atvaizdas yra dvigubai didesnis nei 
+netinstall versijos. Core versija -  turi būtinus sistemai paketus 
+savyje ir esant lėtam ar nestabiliam internetui,  galima pasirinkti 
+nesiųsti naujų paketų versijų diegimo metu. Netinstall versija būtinus 
+paketus sistemai siunčia diegiant, taip instaliuodami sistemą visada 
+iškart turėsite ją naują. Aš rekomenduočiau core versiją, nes pvz. 
+dingus internetui ar tą patį diską naudojant kitur, kur ryšys lėtas ir 
+nestabilus  - paprasčiau įrašyti bus nesiunčiant kiekvieno paketo.
+<h3>Diegimas</h3>
+<a 
+href="http://www.fwd.lt/wp-content/uploads/2011/07/Selection_004.png"><img 
+class="size-full wp-image-1341 alignnone" title="install" 
+src="http://www.fwd.lt/wp-content/uploads/2011/07/Selection_004.png" 
+alt="" width="408" height="332" /></a>
+
+Diegimo procedūra, nors ir nėra pati maloniausiai akiai, bet veikia 
+puikiai ir yra gan paprasta. Kiekvienas diegimo žingsnis yra aprašytas 
+tiek <a 
+href="https://wiki.archlinux.org/index.php/Beginners%27_Guide_(Lietuvi%C5%A1kai)">lietuvių</a>, 
+tiek <a 
+href="https://wiki.archlinux.org/index.php/Official_Arch_Linux_Install_Guide">anglų</a> 
+kalbomis ir labai išsamiai, todėl manau čia problemų kilti neturėtų.
+
+<address>Tikiuosi, kam nors šis straipsnis buvo naudingas, todėl manau 
+būtų galima apie Archlinux parašyti dar ne vieną straipsnį, planuojamos 
+temos:</address>
+<ul>
+	<li><address>ArchLinux: Pirmi žingsniai naujai įdiegtoje 
+sistemoje.</address></li>
+	<li><address>ArchLinux: renkamės darbinę aplinką.</address></li>
+	<li><address> ArchLinux: AUR</address></li>
+</ul>
+<address>Nauja temą visada galite pasiūlyti komentaruose.</address>
